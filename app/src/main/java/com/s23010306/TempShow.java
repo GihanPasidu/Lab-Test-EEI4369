@@ -6,16 +6,20 @@ import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.media.MediaPlayer;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Button;
 import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.VideoView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 public class TempShow extends AppCompatActivity implements SensorEventListener {
+
+    private VideoView tempbackgroundVideo;
     private static final String TAG = "TempShow";
     private TextView currentTempLabel;
     private TextView currentTemperatureValue;
@@ -62,6 +66,8 @@ public class TempShow extends AppCompatActivity implements SensorEventListener {
             Log.e(TAG, "Error initializing MediaPlayer", e);
             Toast.makeText(this, "Error initializing alarm sound: " + e.getMessage(), Toast.LENGTH_SHORT).show();
         }
+        tempbackgroundVideo = findViewById(R.id.backgroundVideo);
+        setupVideoBackground();
 
         // Initialize TextViews
         currentTempLabel = findViewById(R.id.currentTempLabel);
@@ -190,4 +196,16 @@ public class TempShow extends AppCompatActivity implements SensorEventListener {
             }
         }
     }
+
+    private void setupVideoBackground() {
+        String videoPath = "android.resource://" + getPackageName() + "/" + R.raw.temp_background;
+        Uri uri = Uri.parse(videoPath);
+        tempbackgroundVideo.setVideoURI(uri);
+        tempbackgroundVideo.setOnPreparedListener(mp -> {
+            mp.setLooping(true);
+            mp.setVolume(0f, 0f); // Mute
+        });
+        tempbackgroundVideo.start();
+    }
+
 }
