@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#808080"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:id="@+id/titleText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="WELCOME TO Lab-test"
+        android:textSize="28sp"
+        android:textStyle="bold"
+        android:textColor="#DDE1EB"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="40dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <ImageView
+        android:id="@+id/educationImage"
+        android:layout_width="400dp"
+        android:layout_height="400dp"
+        android:src="@drawable/education"
+        android:contentDescription="Education Illustration"
+        app:layout_constraintTop_toBottomOf="@id/titleText"
+        android:layout_marginTop="48dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <TextView
+        android:id="@+id/descriptionText"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Welcome to Lab-test – This is EEI4369 Lab Test App in Open universirt of sri lanka."
+        android:textSize="20sp"
+        android:textColor="#DDE1EB"
+        android:gravity="center"
+        app:layout_constraintTop_toBottomOf="@id/educationImage"
+        android:layout_marginTop="48dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="24dp" />
+
+    <Button
+        android:id="@+id/getStartedButton"
+        android:layout_width="0dp"
+        android:layout_height="48dp"
+        android:text="GET STARTED"
+        android:textAllCaps="true"
+        android:textColor="#fff"
+        android:background="@drawable/rounded_get_started_bg"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginBottom="60dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginStart="40dp"
+        android:layout_marginEnd="40dp" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
