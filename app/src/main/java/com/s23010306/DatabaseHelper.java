@@ -1,5 +1,8 @@
 package com.s23010306;
 
+// Database schema for Lab 05 - Task 05:
+// Table: users (ID INTEGER PRIMARY KEY AUTOINCREMENT, USERNAME TEXT, PASSWORD TEXT)
+
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;

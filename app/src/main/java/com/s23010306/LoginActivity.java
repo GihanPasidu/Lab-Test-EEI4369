@@ -30,7 +30,7 @@ public class LoginActivity extends AppCompatActivity {
         loginButton = findViewById(R.id.loginButton);
         backgroundVideo = findViewById(R.id.backgroundVideo);
 
-        // Initialize database
+        // Initialize database (SQLite integration for Lab 05 - Task 05)
         databaseHelper = new DatabaseHelper(this);
 
         setupVideoBackground();
@@ -44,7 +44,7 @@ public class LoginActivity extends AppCompatActivity {
                 return;
             }
 
-            // Save login info into database
+            // Save login info into database and show Toast confirmation
             boolean success = databaseHelper.insertData(username, password);
             if (success) {
                 Toast.makeText(this, "Login data saved successfully", Toast.LENGTH_SHORT).show();

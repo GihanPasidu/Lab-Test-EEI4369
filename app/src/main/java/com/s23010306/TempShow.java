@@ -19,10 +19,6 @@ public class TempShow extends AppCompatActivity implements SensorEventListener {
     private static final String TAG = "TempShow";
     private TextView currentTempLabel;
     private TextView currentTemperatureValue;
-    private Button dryButton;
-    private Button coolButton;
-    private Button fanButton;
-    private Button heatButton;
     private TextView sliderValue;
     private TextView minTemp;
     private TextView maxTemp;
@@ -31,7 +27,8 @@ public class TempShow extends AppCompatActivity implements SensorEventListener {
     private SensorManager sensorManager;
     private Sensor ambientTempSensor;
     private MediaPlayer mediaPlayer;
-    private static final float TEMP_THRESHOLD = 06.0f;
+    // Set threshold to last two digits of SID: 06 for S23010306
+    private static final float TEMP_THRESHOLD = 6.0f;
     private boolean isAlarmPlaying = false;
 
     @Override
@@ -73,24 +70,18 @@ public class TempShow extends AppCompatActivity implements SensorEventListener {
         minTemp = findViewById(R.id.minTemp);
         maxTemp = findViewById(R.id.maxTemp);
 
-        // Initialize Buttons
-        dryButton = findViewById(R.id.dryButton);
-        coolButton = findViewById(R.id.coolButton);
-        fanButton = findViewById(R.id.fanButton);
-        heatButton = findViewById(R.id.heatButton);
-
         // Initialize SeekBar
         temperatureSlider = findViewById(R.id.temperatureSlider);
 
         // Set initial values
-        currentTemperatureValue.setText("40°");
-        sliderValue.setText("40");
+        currentTemperatureValue.setText("4°");
+        sliderValue.setText("4");
         minTemp.setText("0");
         maxTemp.setText("100");
 
         // Configure SeekBar
         temperatureSlider.setMax(100);
-        temperatureSlider.setProgress(40);
+        temperatureSlider.setProgress(4);
         temperatureSlider.setMin(0);
 
         temperatureSlider.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {

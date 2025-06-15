@@ -1,8 +1,10 @@
 package com.s23010306;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.widget.Button;
+import android.widget.VideoView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -11,6 +13,7 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 public class MainActivity extends AppCompatActivity {
+    private VideoView mainbackgroundVideo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,6 +26,10 @@ public class MainActivity extends AppCompatActivity {
             return insets;
         });
 
+        // Initialize the background video
+        mainbackgroundVideo = findViewById(R.id.backgroundVideo);
+        setupVideoBackground();
+
         // Initialize the GET STARTED button
         Button getStartedButton = findViewById(R.id.getStartedButton);
         getStartedButton.setOnClickListener(v -> {
@@ -30,5 +37,32 @@ public class MainActivity extends AppCompatActivity {
             Intent intent = new Intent(MainActivity.this, LoginActivity.class);
             startActivity(intent);
         });
+    }
+
+    private void setupVideoBackground() {
+        String videoPath = "android.resource://" + getPackageName() + "/" + R.raw.main_background;
+        Uri uri = Uri.parse(videoPath);
+        mainbackgroundVideo.setVideoURI(uri);
+        mainbackgroundVideo.setOnPreparedListener(mp -> {
+            mp.setLooping(true);
+            mp.setVolume(0f, 0f); // Mute
+        });
+        mainbackgroundVideo.start();
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        if (mainbackgroundVideo != null) {
+            mainbackgroundVideo.pause();
+        }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if (mainbackgroundVideo != null && !mainbackgroundVideo.isPlaying()) {
+            mainbackgroundVideo.start();
+        }
     }
 }
